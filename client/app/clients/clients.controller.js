@@ -1,11 +1,18 @@
 'use strict';
 
-angular.module('jsSparkUiApp').controller('ClientsCtrl', function ($scope) {
+angular.module('jsSparkUiApp').controller('ClientsCtrl', function ($scope, $http, socket) {
     $scope.message = 'Hello';
 
-    $scope.clients = [
-        {id: '-ooHn-0id9eXLxRgAAAB'},
-        {id: '1ooHn-0id9eXLxRgAAAB', email:'some@that.loggedin.com'}
-    ];
+    $scope.clients = [];
 
+    $http.get('/api/clients').success(function(clients) {
+        $scope.clients = clients.map(function(client){
+            if(!client.email) {
+                client.email = "unknown@example.com";
+            }
+            return client;
+        });
+        socket.syncUpdates('client', $scope.clients);
+    });
 });
+
