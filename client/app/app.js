@@ -7,7 +7,9 @@ var jSSparkUi = angular.module('jsSparkUiApp', [
     'btford.socket-io',
     'ui.router',
     'ui.bootstrap',
-//    'underscore'
+    'jQuery',
+    '_',
+    'config'
 ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $urlRouterProvider
