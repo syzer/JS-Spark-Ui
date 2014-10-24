@@ -19,11 +19,6 @@ var jSSparkUi = angular.module('jsSparkUiApp', [
         $httpProvider.interceptors.push('authInterceptor');
     })
 
-//    .factory('_', function () {
-//        console.log('DA WINDOW', window._);
-//        return window._; // assumes underscore has already been loaded on the page
-//    })
-
     .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
         return {
             // Add authorization token to headers
